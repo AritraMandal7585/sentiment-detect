@@ -9,9 +9,18 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from fastapi.middleware.cors import CORSMiddleware
 
 # Declaring our FastAPI instance
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "OPTIONS"],  # Add OPTIONS method
+    allow_headers=["*"],
+)
  
 output = {}
 
